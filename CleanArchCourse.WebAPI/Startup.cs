@@ -1,3 +1,5 @@
+using System.Reflection;
+using CleanArchCourse.Application.DependencyContainers;
 using CleanArchCourse.Application.Interfaces.Repositories;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
 using CleanArchCourse.Infrastructure.Contexts;
@@ -30,13 +32,12 @@ namespace CleanArchCourse.WebAPI
 
             services.AddControllers();
             services.AddInfrastructureServices(Configuration);
+            services.AddApplicationServices();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CleanArchCourse.WebAPI", Version = "v1" });
             });
-
-            
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

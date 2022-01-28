@@ -13,5 +13,6 @@ namespace CleanArchCourse.Infrastructure.Contexts
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<CategorySub> CategorySubs { get; set; }
     }
 }

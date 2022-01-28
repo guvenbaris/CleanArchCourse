@@ -18,14 +18,6 @@ namespace CleanArchCourse.WebAPI.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
-        public async Task<ICollection<Teacher>> GetAll()
-        {
-            GetAllTeacherQuery query = new(_unitOfWork);
-
-            return await query.Handle();
-        }
-
         [HttpPost]
         public IActionResult Create([FromBody] Teacher teacher)
         {

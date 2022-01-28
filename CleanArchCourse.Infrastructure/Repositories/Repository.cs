@@ -42,6 +42,7 @@ namespace CleanArchCourse.Infrastructure.Repositories
 
         public async Task<ICollection<TEntity>> GetAll()
         {
+            
            return await _dbSet.ToListAsync();
         }
 

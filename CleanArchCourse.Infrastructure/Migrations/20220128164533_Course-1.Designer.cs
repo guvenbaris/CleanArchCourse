@@ -4,14 +4,16 @@ using CleanArchCourse.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CleanArchCourse.Infrastructure.Migrations
 {
     [DbContext(typeof(CourseContext))]
-    partial class CourseContextModelSnapshot : ModelSnapshot
+    [Migration("20220128164533_Course-1")]
+    partial class Course1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,13 +165,11 @@ namespace CleanArchCourse.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchCourse.Domain.Concrete.Entities.CategorySub", b =>
                 {
-                    b.HasOne("CleanArchCourse.Domain.Concrete.Entities.Category", "Category")
+                    b.HasOne("CleanArchCourse.Domain.Concrete.Entities.Category", null)
                         .WithMany("CategorySubs")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("CleanArchCourse.Domain.Concrete.Entities.Course", b =>
