@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using CleanArchCourse.Application.Exceptions;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
 using CleanArchCourse.Domain.Concrete.Entities;
+using MediatR;
 
 namespace CleanArchCourse.Application.Features.TeacherOperations.Command.UpdateTeacher
 {
-    public class UpdateTeacherCommand
+    public class UpdateTeacherCommand : IRequestHandler<UpdateTeacherRequest,UpdateTeacherResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -14,13 +16,13 @@ namespace CleanArchCourse.Application.Features.TeacherOperations.Command.UpdateT
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<UpdateTeacherResponse> Handle(UpdateTeacherRequest request,int id)
+        public async Task<UpdateTeacherResponse> Handle(UpdateTeacherRequest request, CancellationToken cancellationToken)
         {
 
-            var teacher = _unitOfWork.Teacher.GetById(id).Result;
+            var teacher = _unitOfWork.Teacher.GetById(request.Id).Result;
             if (teacher is null)
             {
-                throw new NotFoundExceptions(nameof(Teacher), id);
+                throw new NotFoundExceptions(nameof(Teacher), request.Id);
             }
 
             teacher.Name = teacher.Name != default ? request.Name : teacher.Name;
@@ -30,8 +32,7 @@ namespace CleanArchCourse.Application.Features.TeacherOperations.Command.UpdateT
             await _unitOfWork.Teacher.Update(teacher);
             await _unitOfWork.SaveChanges();
 
-            return new UpdateTeacherResponse {Messages = "Teacher updated", Success = true};
-
+            return new UpdateTeacherResponse { Messages = "Teacher updated", Success = true };
         }
     }
 }

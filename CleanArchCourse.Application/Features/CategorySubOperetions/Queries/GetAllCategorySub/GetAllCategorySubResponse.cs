@@ -1,7 +1,7 @@
 ﻿
-namespace CleanArchCourse.Application.Dtos
+namespace CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetAllCategorySub
 {
-    public class CategorySubDetailDto
+    public class GetAllCategorySubResponse
     {
         public string CategorySubName { get; set; }
         public string CategoryName { get; set; }

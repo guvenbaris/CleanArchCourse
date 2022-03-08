@@ -14,7 +14,7 @@ namespace CleanArchCourse.Application.Features.CategoryOperations.Queries.GetAll
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<ICollection<Category>> Handle() => await _categoryRepository.GetAll();
+        public async Task<IEnumerable<Category>> Handle() => await _categoryRepository.GetAll();
     }
 }
 

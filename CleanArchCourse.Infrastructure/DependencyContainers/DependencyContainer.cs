@@ -1,10 +1,12 @@
-﻿using CleanArchCourse.Application.Interfaces.Repositories;
+﻿using System.Reflection;
+using CleanArchCourse.Application.Interfaces.Repositories;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
 using CleanArchCourse.Infrastructure.Contexts;
 using CleanArchCourse.Infrastructure.Repositories;
 using CleanArchCourse.Infrastructure.UnitOfWorks;
-using Microsoft.Extensions.Configuration;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchCourse.Infrastructure.DependencyContainers
@@ -18,12 +20,13 @@ namespace CleanArchCourse.Infrastructure.DependencyContainers
             services.AddDbContext<CourseContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("default")));
             
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategorySubRepository, CategorySubRepository>();
-            services.AddTransient<ICourseRepository, CourseRepository>();
-            services.AddTransient<ITeacherRepository, TeacherRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
         }
     }
 }

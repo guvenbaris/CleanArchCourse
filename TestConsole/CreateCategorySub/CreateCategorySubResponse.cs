@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchCourse.Application.Features.CategorySubOperetions.Commands.CreateCategorySub
+namespace TestConsole.CreateCategorySub
 {
-    public class CreateCategorySubResponse 
+    public class CreateCategorySubResponse :IResponse
     {
         public string Message { get; set; }
         public bool Success { get; set; } = true;

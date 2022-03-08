@@ -11,9 +11,9 @@ namespace CleanArchCourse.Application.Interfaces.Repositories
         Task Add(TEntity entity);
         Task Delete(TEntity entity);
         Task Update(TEntity entity);
-        Task<ICollection<TEntity>> GetAll();
+        Task<IEnumerable< TEntity>> GetAll();
         Task<TEntity> GetById(int id);
-        Task<ICollection<TEntity>> Get(Expression<Func<TEntity, bool>> filter);
+        Task<IEnumerable< TEntity>> Get(Expression<Func<TEntity, bool>> filter);
     }
 }
 

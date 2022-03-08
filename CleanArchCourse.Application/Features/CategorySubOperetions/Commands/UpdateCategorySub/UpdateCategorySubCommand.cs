@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
+using MediatR;
 
 namespace CleanArchCourse.Application.Features.CategorySubOperetions.Commands.UpdateCategorySub
 {
-    public class UpdateCategorySubCommand
+    public class UpdateCategorySubCommand :IRequestHandler<UpdateCategorySubRequest,UpdateCategorySubResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -17,9 +14,9 @@ namespace CleanArchCourse.Application.Features.CategorySubOperetions.Commands.Up
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<UpdateCategorySubResponse> Handle(UpdateCategorySubRequest request, int id)
+        public async Task<UpdateCategorySubResponse> Handle(UpdateCategorySubRequest request,CancellationToken cancellationToken)
         {
-            var categorySub = _unitOfWork.CategorySub.GetById(id);
+            var categorySub = _unitOfWork.CategorySub.GetById(request.Id);
 
 
             categorySub.Result.CategorySubName = categorySub.Result.CategorySubName != default
@@ -35,8 +32,7 @@ namespace CleanArchCourse.Application.Features.CategorySubOperetions.Commands.Up
             await _unitOfWork.CategorySub.Update(categorySub.Result);
             await _unitOfWork.SaveChanges();
 
-            return new UpdateCategorySubResponse {Message = "CategorySub Updated"};
-
+            return new UpdateCategorySubResponse { Message = "CategorySub Updated" };
         }
     }
 }

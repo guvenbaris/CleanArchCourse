@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
+using MediatR;
 
 namespace CleanArchCourse.Application.Features.TeacherOperations.Queries.GetAllTeacher
 {
-    public class GetAllTeacherQuery
+    public class GetAllTeacherQuery : IRequestHandler<GetAllTeacherRequest,IEnumerable<GetAllTeacherResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -16,7 +18,9 @@ namespace CleanArchCourse.Application.Features.TeacherOperations.Queries.GetAllT
             _mapper = mapper;
         }
 
-        public async Task<ICollection<GetAllTeacherResponse>> Handle() =>
-            _mapper.Map<ICollection<GetAllTeacherResponse>>(await _unitOfWork.Teacher.GetAll());
+        public async Task<IEnumerable<GetAllTeacherResponse>> Handle(GetAllTeacherRequest request, CancellationToken cancellationToken)
+        {
+            return _mapper.Map<IEnumerable<GetAllTeacherResponse>>(await _unitOfWork.Teacher.GetAll());
+        }
     }
 }

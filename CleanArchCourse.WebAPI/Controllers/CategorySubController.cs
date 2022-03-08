@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
 using CleanArchCourse.Application.Features.CategorySubOperetions.Commands.CreateCategorySub;
+using Microsoft.AspNetCore.Mvc;
 using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetAllCategorySub;
 using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetByIdCategorySub;
-using CleanArchCourse.Application.Interfaces.UnitOfWorks;
+using MediatR;
 
 namespace CleanArchCourse.WebAPI.Controllers
 {
@@ -12,37 +11,33 @@ namespace CleanArchCourse.WebAPI.Controllers
     [ApiController]
     public class CategorySubController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public CategorySubController(IUnitOfWork unitOfWork, IMapper mapper)
+        public CategorySubController(IMediator mediator)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var query = new GetAllCategorySubQuery(_unitOfWork);
-            return Ok(await query.Handle());
+           return Ok(await _mediator.Send(new GetAllCategorySubRequest()));
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var query = new GetByIdCategorySubQuery(_unitOfWork);
-
-            return Ok(query.Handle(id).Result);
+            GetByIdCategorySubResponse response = await _mediator.Send(new GetByIdCategorySubRequest {Id = id});
+            return Ok(response);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCategorySubRequest request)
         {
-            var command = new CreateCategorySubCommand(_unitOfWork,_mapper);
-         
-            return Ok(await command.Handle(request));
+            return Ok(await _mediator.Send(request));
         }
+
+
+
     }
 }

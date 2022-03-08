@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchCourse.Domain", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchCourse.Application", "CleanArchCourse.Application\CleanArchCourse.Application.csproj", "{876A5C1D-AA97-4BCD-9FAA-B49996B1A52D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchCourse.Infrastructure", "CleanArchCourse.Infrastructure\CleanArchCourse.Infrastructure.csproj", "{6B4DEC9A-36CD-41B3-AA3E-88212BB9EC23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchCourse.Infrastructure", "CleanArchCourse.Infrastructure\CleanArchCourse.Infrastructure.csproj", "{6B4DEC9A-36CD-41B3-AA3E-88212BB9EC23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchCourse.WebAPI", "CleanArchCourse.WebAPI\CleanArchCourse.WebAPI.csproj", "{0F0A6503-CD4A-4EB1-A452-ED2A9DB40BC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchCourse.WebAPI", "CleanArchCourse.WebAPI\CleanArchCourse.WebAPI.csproj", "{0F0A6503-CD4A-4EB1-A452-ED2A9DB40BC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{F39F014C-99C3-4321-974D-02F07A2F6675}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0F0A6503-CD4A-4EB1-A452-ED2A9DB40BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F0A6503-CD4A-4EB1-A452-ED2A9DB40BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F0A6503-CD4A-4EB1-A452-ED2A9DB40BC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F39F014C-99C3-4321-974D-02F07A2F6675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39F014C-99C3-4321-974D-02F07A2F6675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F39F014C-99C3-4321-974D-02F07A2F6675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39F014C-99C3-4321-974D-02F07A2F6675}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

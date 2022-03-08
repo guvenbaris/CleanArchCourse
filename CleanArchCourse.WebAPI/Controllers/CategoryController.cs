@@ -12,19 +12,5 @@ namespace CleanArchCourse.WebAPI.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryRepository _categoryRepository;
-
-        public CategoryController(ICategoryRepository categoryRepository)
-        {
-            _categoryRepository = categoryRepository;
-        }
-
-        [HttpGet]
-        public async Task<ICollection<Category>> GetAll()
-        {
-            GetAllCategoryQuery query = new(_categoryRepository);
-
-            return await query.Handle();
-        }
     }
 }

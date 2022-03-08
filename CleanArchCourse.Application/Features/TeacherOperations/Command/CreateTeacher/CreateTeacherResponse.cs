@@ -1,4 +1,5 @@
-﻿namespace CleanArchCourse.Application.Features.TeacherOperations.Command.CreateTeacher
+﻿
+namespace CleanArchCourse.Application.Features.TeacherOperations.Command.CreateTeacher
 {
     public class CreateTeacherResponse
     {

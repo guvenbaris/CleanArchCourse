@@ -10,6 +10,7 @@ namespace CleanArchCourse.Application.Mapping
         public TeacherMapping()
         {
             CreateMap<Teacher, CreateTeacherResponse>().ReverseMap();
+            CreateMap<Teacher, CreateTeacherRequest>().ReverseMap();
             CreateMap<Teacher, GetByIdTeacherResponse>().ReverseMap();
         }
     }

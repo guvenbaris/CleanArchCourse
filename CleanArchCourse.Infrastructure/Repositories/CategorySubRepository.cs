@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CleanArchCourse.Application.Dtos;
+using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetAllCategorySub;
+using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetByIdCategorySub;
 using CleanArchCourse.Application.Interfaces.Repositories;
 using CleanArchCourse.Domain.Concrete.Entities;
 using CleanArchCourse.Infrastructure.Contexts;
@@ -17,11 +18,11 @@ namespace CleanArchCourse.Infrastructure.Repositories
             _courseContext = courseContext;
         }
 
-        public async Task<ICollection<CategorySubDetailDto>> GetCategorySubDetail()
+        public async Task<IEnumerable<GetAllCategorySubResponse>> GetCategorySubDetail()
         {
             var result = from cS in _courseContext.CategorySubs
                 join c in _courseContext.Categories on cS.CategoryId equals c.Id
-                select new CategorySubDetailDto
+                select new GetAllCategorySubResponse
                 {
                     CategoryName = c.CategoryName,
                     CategorySubName = cS.CategorySubName,
@@ -30,12 +31,13 @@ namespace CleanArchCourse.Infrastructure.Repositories
             return await result.ToListAsync();
         }
 
-        public async Task<CategorySubDetailDto> GetCategorySubDetailById(int id)
+
+        public async Task<GetByIdCategorySubResponse> GetCategorySubDetailById(int id)
         {
             var result = from cS in _courseContext.CategorySubs
                 join c in _courseContext.Categories on cS.CategoryId equals c.Id
                 where cS.Id == id 
-                select new CategorySubDetailDto
+                select new GetByIdCategorySubResponse
                 {
                     CategoryName = c.CategoryName,
                     CategorySubName = cS.CategorySubName,

@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using CleanArchCourse.Application.Dtos;
+using CleanArchCourse.Application.Interfaces.Repositories;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
-using CleanArchCourse.Domain.Concrete.Entities;
-using Microsoft.EntityFrameworkCore;
+using MediatR;
 
 namespace CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetAllCategorySub
 {
-    public class GetAllCategorySubQuery
+    public class GetAllCategorySubQuery : IRequestHandler<GetAllCategorySubRequest,IEnumerable<GetAllCategorySubResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GetAllCategorySubQuery(IUnitOfWork unitOfWork)
+        public GetAllCategorySubQuery(IUnitOfWork unitOfWork, ICategorySubRepository categorySubRepository)
         {
             _unitOfWork = unitOfWork;
+            
         }
 
-        public async Task<ICollection<CategorySubDetailDto>> Handle() => await _unitOfWork.CategorySub.GetCategorySubDetail();
 
+        public async Task<IEnumerable<GetAllCategorySubResponse>> Handle(GetAllCategorySubRequest request, CancellationToken cancellationToken)
+        {
+            return await _unitOfWork.CategorySub.GetCategorySubDetail();
+        }
     }
 
 }

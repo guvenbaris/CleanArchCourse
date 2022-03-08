@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using CleanArchCourse.Application.Interfaces.Repositories;
-using CleanArchCourse.Domain.Concrete.Entities;
 
 namespace CleanArchCourse.Application.Interfaces.UnitOfWorks
 {
@@ -12,7 +11,6 @@ namespace CleanArchCourse.Application.Interfaces.UnitOfWorks
         IUserRepository User { get; }
         ICategorySubRepository  CategorySub { get; }
         ICategoryRepository Category { get; }
-
         Task<int> SaveChanges();
     }
 }

@@ -1,14 +1,12 @@
 using System.Reflection;
 using CleanArchCourse.Application.DependencyContainers;
-using CleanArchCourse.Application.Interfaces.Repositories;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
 using CleanArchCourse.Infrastructure.Contexts;
 using CleanArchCourse.Infrastructure.DependencyContainers;
-using CleanArchCourse.Infrastructure.Repositories;
 using CleanArchCourse.Infrastructure.UnitOfWorks;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,8 +29,8 @@ namespace CleanArchCourse.WebAPI
         {
 
             services.AddControllers();
-            services.AddInfrastructureServices(Configuration);
             services.AddApplicationServices();
+            services.AddInfrastructureServices(Configuration);
             
             services.AddSwaggerGen(c =>
             {

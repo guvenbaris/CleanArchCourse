@@ -40,10 +40,9 @@ namespace CleanArchCourse.Infrastructure.Repositories
             return Task.CompletedTask;
         }
 
-        public async Task<ICollection<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            
-           return await _dbSet.ToListAsync();
+            return await _dbSet.ToListAsync();
         }
 
         public async Task<TEntity> GetById(int id)
@@ -51,7 +50,7 @@ namespace CleanArchCourse.Infrastructure.Repositories
             return await _dbSet.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<ICollection<TEntity>> Get(Expression<Func<TEntity, bool>> filter)
+        public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> filter)
         {
             return await _dbSet.Where(filter).ToListAsync();
         }
