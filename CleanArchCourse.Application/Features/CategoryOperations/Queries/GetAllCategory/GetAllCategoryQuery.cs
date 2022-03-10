@@ -1,20 +1,30 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
-using CleanArchCourse.Application.Interfaces.Repositories;
-using CleanArchCourse.Domain.Concrete.Entities;
+using AutoMapper;
+using CleanArchCourse.Application.Interfaces.UnitOfWorks;
+using MediatR;
 
 namespace CleanArchCourse.Application.Features.CategoryOperations.Queries.GetAllCategory
 {
-    public class GetAllCategoryQuery
+    public class GetAllCategoryQuery : IRequestHandler<GetAllCategoryRequest,IEnumerable<GetAllCategoryResponse>>
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public GetAllCategoryQuery(ICategoryRepository categoryRepository)
+
+        public GetAllCategoryQuery(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _categoryRepository = categoryRepository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Category>> Handle() => await _categoryRepository.GetAll();
+
+        public async Task<IEnumerable<GetAllCategoryResponse>> Handle(GetAllCategoryRequest request, CancellationToken cancellationToken)
+        {
+            var categories = await _unitOfWork.Category.GetAll();
+            return _mapper.Map<IEnumerable<GetAllCategoryResponse>>(categories);
+        }
     }
 }
 

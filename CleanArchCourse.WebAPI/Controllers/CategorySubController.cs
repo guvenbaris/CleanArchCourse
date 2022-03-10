@@ -1,9 +1,12 @@
-﻿using System.Threading.Tasks;
-using CleanArchCourse.Application.Features.CategorySubOperetions.Commands.CreateCategorySub;
+﻿using MediatR;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CleanArchCourse.Application.Features.CategorySubOperetions.Commands.CreateCategorySub;
+using CleanArchCourse.Application.Features.CategorySubOperetions.Commands.DeleteCategorySub;
+using CleanArchCourse.Application.Features.CategorySubOperetions.Commands.UpdateCategorySub;
 using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetAllCategorySub;
 using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetByIdCategorySub;
-using MediatR;
+
 
 namespace CleanArchCourse.WebAPI.Controllers
 {
@@ -27,8 +30,8 @@ namespace CleanArchCourse.WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            GetByIdCategorySubResponse response = await _mediator.Send(new GetByIdCategorySubRequest {Id = id});
-            return Ok(response);
+           
+            return Ok(await _mediator.Send(new GetByIdCategorySubRequest { Id = id }));
         }
 
         [HttpPost]
@@ -37,7 +40,18 @@ namespace CleanArchCourse.WebAPI.Controllers
             return Ok(await _mediator.Send(request));
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateCategorySubRequest request)
+        {
+            return Ok(await _mediator.Send(request));
 
+        }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _mediator.Send(new DeleteCategorySubRequest {Id = id}));
+        }
+        
     }
 }

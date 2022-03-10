@@ -14,11 +14,6 @@ namespace CleanArchCourse.Infrastructure.Repositories
     {
         private readonly DbSet<TEntity> _dbSet;
 
-
-        /// <summary>
-        /// Düzenlecenek UNUTMA
-        /// </summary>
-        /// <param name="courseContext"></param>
         public Repository(CourseContext courseContext)
         {
             _dbSet = courseContext.Set<TEntity>();

@@ -6,6 +6,7 @@ namespace CleanArchCourse.Domain.Concrete.Entities
     public class Category :BaseEntity
     {
         public string CategoryName { get; set; }
-        public ICollection<CategorySub> CategorySubs { get; set; }
+        public IEnumerable<CategorySub> CategorySubs { get; set; }
     }
 }
+

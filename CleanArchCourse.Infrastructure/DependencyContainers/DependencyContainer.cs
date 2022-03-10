@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetAllCategorySub;
 using CleanArchCourse.Application.Interfaces.Repositories;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
 using CleanArchCourse.Infrastructure.Contexts;
@@ -26,7 +27,7 @@ namespace CleanArchCourse.Infrastructure.DependencyContainers
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            
         }
     }
 }

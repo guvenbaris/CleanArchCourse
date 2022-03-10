@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchCourse.Application.Interfaces.Repositories;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
 using MediatR;
 
@@ -11,7 +10,7 @@ namespace CleanArchCourse.Application.Features.CategorySubOperetions.Queries.Get
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GetAllCategorySubQuery(IUnitOfWork unitOfWork, ICategorySubRepository categorySubRepository)
+        public GetAllCategorySubQuery(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             

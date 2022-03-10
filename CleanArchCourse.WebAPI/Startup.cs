@@ -1,5 +1,8 @@
+using System;
 using System.Reflection;
 using CleanArchCourse.Application.DependencyContainers;
+using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetAllCategorySub;
+using CleanArchCourse.Application.Features.CategorySubOperetions.Queries.GetByIdCategorySub;
 using CleanArchCourse.Application.Interfaces.UnitOfWorks;
 using CleanArchCourse.Infrastructure.Contexts;
 using CleanArchCourse.Infrastructure.DependencyContainers;
@@ -29,7 +32,9 @@ namespace CleanArchCourse.WebAPI
         {
 
             services.AddControllers();
+
             services.AddApplicationServices();
+
             services.AddInfrastructureServices(Configuration);
             
             services.AddSwaggerGen(c =>
