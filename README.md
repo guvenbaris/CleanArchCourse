@@ -37,4 +37,3 @@ CQRS mimarisi için CQS(Komut Sorgulama Ayırma) ilkesi üzerine
 kurulmuş olduğunu söyleyebiliriz. CQS’in ana fikri veriyi okuyan operasyonlarımız ile 
 veriyi güncelleyen operasyonlarmızın interfacelerini ayırmaktır. CQRS’te ise buna business
 modellerimizin ayrılmasıda eklenmektedir. 
-
